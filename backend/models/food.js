@@ -1,6 +1,3 @@
-const { Sequelize } = require("sequelize/types");
-const { sequelize } = require(".");
-
 module.exports = (sequelize, Sequelize) => {
   const Food = sequelize.define("food_items",{
     foodName: {
@@ -14,7 +11,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     popular: {
       type: Sequelize.BOOLEAN,
-      defaultValue: FALSE
+      defaultValue: 0
     }
   });
 
