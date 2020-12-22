@@ -1,0 +1,32 @@
+.autoComplete{
+    width: 100%;
+    font-size: 14px;
+    color: rgba(0,0,0,.9);
+}
+.autoComplete input{
+    width: 100%;
+    font-size: 14px;
+    color: rgba(0,0,0,.9);
+    padding: 10px 5px;
+    outline: none;
+}
+
+.autoComplete ul{
+    list-style-type: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;  
+}
+.autoComplete ul::before{
+    content: "";
+}
+.autoComplete li{
+    padding: 10px 5px;
+    cursor: pointer;
+}
+.autoComplete li:hover{
+    text-decoration: none;
+    background-color: white;
+}
+
+

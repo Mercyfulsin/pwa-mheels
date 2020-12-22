@@ -1,0 +1,11 @@
+.delete-btn {
+    float: right;
+    color: #e74944;
+  }
+  .menu-display{
+    background: rgb(249, 105, 42);
+    margin-bottom: 10px;
+  }
+  .add-menu-item{
+    margin-bottom: 10px;
+  }
