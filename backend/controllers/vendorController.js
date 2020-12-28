@@ -1,12 +1,12 @@
 const db = require("../models");
-const Menu = db.menu_entries;
+const Vendor = db.menu_entries;
 const Op = db.sequelize.Op;
 
 module.exports = {
-  // Create and Save a new Menu
+  // Create and Save a new Vendor
   create: function (req, res) {
     // Check if empty
-    if (!req.body.menuName) {
+    if (!req.body.vendorName) {
       console.log(req);
       res.status(400).send({
         message: "Content can not be empty!"
@@ -14,14 +14,15 @@ module.exports = {
       return;
     }
 
-    //Create Menu
-    const menu_entries = {
-      menuName: req.body.menuName,
-      menu_id: req.body.menu_id
+    //Create Vendor
+    const vendors = {
+      vendorName: req.body.vendorName,
+      owner: req.body.owner,
+
     }
 
-    // Save Menu in DB
-    Menu.create(menu_entries)
+    // Save Vendor in DB
+    Vendor.create(vendors)
       .then(data => {
         res.send(data);
       })
@@ -32,15 +33,15 @@ module.exports = {
       });
   },
 
-  // Retrieve all Menu items from the DB.
+  // Retrieve all Vendor items from the DB.
   findAll: function (req, res) {
-    const menuName = req.query.menuName;
-    let condition = menuName ? {
-      menuName: {
-        [Op.like]: `%${menuName}%`
+    const vendorName = req.query.vendorName;
+    let condition = vendorName ? {
+      vendorName: {
+        [Op.like]: `%${vendorName}%`
       }
     } : null;
-    Menu.findAll({
+    Vendor.findAll({
         where: condition
       })
       .then(data => {
@@ -53,27 +54,25 @@ module.exports = {
       });
   },
 
-  // Find a single Menu with an id
+  // Find a single Vendor with an id
   findOne: function (req, res) {
     const id = req.params.id;
 
-    Menu.findByPk(id)
+    Vendor.findByPk(id)
       .then(data => {
 
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving Menu with id=" + id
+          message: "Error retrieving Vendor with id=" + id
         });
       });
-  },
-
-  // Update a Menu by the id in the request
+  }, // Update a Vendor by the id in the request
   update: function (req, res) {
     const id = req.params.id;
 
-    Menu.update(req.body, {
+    Vendor.update(req.body, {
         where: {
           id: id
         }
@@ -81,26 +80,26 @@ module.exports = {
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Menu was updated successfully."
+            message: "Vendor was updated successfully."
           });
         } else {
           res.send({
-            message: `Cannot update Menu with id=${id}. Maybe Menu was not found or req.body is empty!`
+            message: `Cannot update Vendor with id=${id}. Maybe Vendor was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating Menu with id=" + id
+          message: "Error updating Vendor with id=" + id
         });
       });
   },
 
-  // Delete a Menu with the specified id in the request
+  // Delete a Vendor with the specified id in the request
   delete: function (req, res) {
     const id = req.params.id;
     console.log("I was pinged");
-    Menu.destroy({
+    Vendor.destroy({
         where: {
           id: id
         }
@@ -108,30 +107,30 @@ module.exports = {
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Menu was deleted successfully!"
+            message: "Vendor was deleted successfully!"
           });
         } else {
           res.send({
-            message: `Cannot delete Menu with id=${id}. Maybe Menu was not found!`
+            message: `Cannot delete Vendor with id=${id}. Maybe Vendor was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete Menu with id=" + id
+          message: "Could not delete Vendor with id=" + id
         });
       });
   },
 
-  // Delete all Menu from the database.
+  // Delete all Vendor from the database.
   deleteAll: function (req, res) {
-    Menu.destroy({
+    Vendor.destroy({
         where: {},
         truncate: false
       })
       .then(nums => {
         res.send({
-          message: `${nums} Menu were deleted successfully!`
+          message: `${nums} Vendor were deleted successfully!`
         });
       })
       .catch(err => {

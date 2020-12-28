@@ -1,20 +1,20 @@
-const { INTEGER } = require("sequelize/types");
+const { INTEGER, STRING, BOOLEAN, ARRAY } = require("sequelize/types");
 
 module.exports = (sequelize, Sequelize) => {
     const Vendors = sequelize.define("vendors",{
-      vendorName: { type: Sequelize.STRING, required: true },
-      owner: { type: Sequelize.STRING, required: true },
-      ownerId: { type: Sequelize.STRING, required: true },
-      menu: { menu_id: Sequelize.INTEGER },
-      categories: Sequelize.ARRAY(Sequelize.STRING),
-      customTweet: { type: Sequelize.STRING, default: '' },
+      vendorName: { type: STRING, required: true },
+      owner: { type: STRING, required: true },
+      ownerId: { type: STRING, required: true },
+      menu: { menu_id: INTEGER },
+      categories: ARRAY(STRING),
+      customTweet: { type: STRING, default: '' },
       tweetTable: { type: Schema.Types.ObjectId, ref: "TweetTable" },
-      location: Sequelize.ARRAY(Sequelize.STRING),
-      hashtags: Sequelize.ARRAY(Sequelize.STRING),
-      city: Sequelize.STRING,
-      state: Sequelize.STRING,
-      status: { type: Sequelize.BOOLEAN, required: true, default: false }, //False = closed ; True = open
-      closingTime: Sequelize.STRING
+      location: ARRAY(STRING),
+      hashtags: ARRAY(STRING),
+      city: STRING,
+      state: STRING,
+      status: { type: BOOLEAN, required: true, default: false }, //False = closed ; True = open
+      closingTime: STRING
     });
   
     return Vendors;
