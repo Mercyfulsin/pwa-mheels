@@ -2,7 +2,7 @@ const db = require("../models");
 const Food = db.food_items;
 const Op = db.sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and Save a new Food
 exports.create = (req, res) => {
   // Check if empty
   if (!req.body.foodName){

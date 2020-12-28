@@ -1,10 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
   const Food = sequelize.define("food_items",{
     foodName: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      required: true
     },
     price: {
-      type: Sequelize.DOUBLE(100,2)
+      type: Sequelize.DOUBLE(100,2),
+      required: true,
+      defaultValue: 1.00
     },
     description: {
       type: Sequelize.STRING

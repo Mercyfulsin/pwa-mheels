@@ -110,7 +110,7 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyDcVj1DhyIDz72KxCdYdlyYfeYn01e_SAw'
+  apiKey: 'AIzaSyC0m0HwiwhrrVE3zCDSEvj_A1vY9od9kGQ'
 })(MapContainer);
 
 export const categoryFilter = (e) => {
