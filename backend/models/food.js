@@ -1,4 +1,5 @@
-const { DOUBLE, STRING, BOOLEAN } = require("sequelize/types");
+const { DOUBLE, STRING, BOOLEAN } = require('sequelize/lib/data-types');
+
 
 module.exports = (sequelize, Sequelize) => {
   const Food = sequelize.define("food_items",{

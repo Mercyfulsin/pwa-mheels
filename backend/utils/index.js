@@ -1,7 +1,7 @@
 const { join } = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
-
+const { requiresAuth } = require('express-openid-connect');
 // API Routes
 router.use("/api", apiRoutes);
 

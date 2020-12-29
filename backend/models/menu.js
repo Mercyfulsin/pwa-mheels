@@ -1,4 +1,4 @@
-const { INTEGER, STRING } = require("sequelize/types");
+const { INTEGER, STRING } = require('sequelize/lib/data-types');
 
 module.exports = (sequelize, Sequelize) => {
     const Menu = sequelize.define("menu_entries",{

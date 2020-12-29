@@ -1,4 +1,4 @@
-const { INTEGER, STRING, BOOLEAN, ARRAY } = require("sequelize/types");
+const { INTEGER, STRING, BOOLEAN, ARRAY } = require('sequelize/lib/data-types');
 
 module.exports = (sequelize, Sequelize) => {
     const Vendors = sequelize.define("vendors",{
