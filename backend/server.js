@@ -19,7 +19,6 @@ app.use(morgan('dev'));
 app.use(express.static(join(__dirname,'../frontend/client/build')))
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(routes);
 
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
@@ -28,6 +27,7 @@ db.sequelize.sync({ force: true }).then(() => {
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
+app.use(routes);
 // Middleware to make the `user` object available for all views
 app.use(function (req, res, next) {
     res.locals.user = req.oidc.user;
@@ -36,6 +36,7 @@ app.use(function (req, res, next) {
   
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
+  console.log(req.oidc.isAuthenticated());
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 const port = process.env.PORT || 5000;
